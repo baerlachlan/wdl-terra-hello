@@ -1,22 +1,31 @@
 version 1.0
 
-workflow wf_hello {
-  call hello
-
-  output {
-     hello.message
-  }
-}
-
 task hello {
-  String addressee
-  command {
-    echo "Hello ${addressee}! Welcome to Cromwell . . . on Google Cloud!"
+  input {
+    String addressee
   }
+
+  command {
+    echo "Hello ~{addressee}! Welcome to Cromwell . . . on Google Cloud!"
+  }
+
   output {
     String message = read_string(stdout())
   }
+
   runtime {
     docker: "ubuntu:latest"
+  }
+}
+
+workflow wf_hello {
+  input {
+    String addressee
+  }
+
+  call hello { input: addressee = addressee }
+
+  output {
+    String message = hello.message
   }
 }
