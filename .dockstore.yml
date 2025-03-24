@@ -1,9 +1,9 @@
 version: 1.2
 workflows:
   - subclass: WDL
-    name: wdl-terra-hello
+    name: hello
     topic: Test WDL workflow for Terra
     primaryDescriptorPath: /hello.wdl
     readMePath: /README.md
     authors:
-      - orcid: 0000-0003-4896-1858
+      - orcid: 0000-0001-5213-3401
